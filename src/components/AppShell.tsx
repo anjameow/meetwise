@@ -46,7 +46,7 @@ export function AppShell() {
     <div className="min-h-dvh">
       {!supabaseConfigured && (
         <div className="bg-gold-100 px-4 py-2 text-center text-sm text-navy-800">
-          Supabase isn't configured yet — set <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_PUBLISHABLE_KEY</code>.
+          Supabase isn't configured yet — set <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_PUBLISHABLE_KEY</code> in your hosting settings, then redeploy.
         </div>
       )}
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2">Skip to content</a>

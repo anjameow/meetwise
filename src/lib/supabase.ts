@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const key = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.VITE_SUPABASE_ANON_KEY) as string | undefined;
+// Injected at build time by vite.config.ts (see .env.example for the names).
+const url = __SUPABASE_URL__ || undefined;
+const key = __SUPABASE_PUBLIC_KEY__ || undefined;
 
 /** True when the Supabase connection has been configured (see .env.example). */
 export const supabaseConfigured = !!url && !!key;
