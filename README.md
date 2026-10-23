@@ -30,6 +30,8 @@ Matching weights (30/25/15/15/10/5) are editable per event (and platform default
 
 ## Setup on Supabase / Lovable
 
+**Non-technical?** Follow [SETUP_GUIDE.md](SETUP_GUIDE.md) instead: it's browser-only, with copy-paste database files and single-file edge functions from `supabase/dashboard/` (rebuild them with `bash scripts/build-dashboard-functions.sh` after changing a function).
+
 1. Create a Supabase project (or connect Lovable Cloud) and apply `supabase/migrations/*.sql` in order (`supabase db push`).
 2. Deploy edge functions: `supabase functions deploy run-matching generate-recommendations scheduler resume-url delete-account`.
 3. Frontend env (`.env`, see `.env.example`): `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` (anon key only — never the service-role key).
