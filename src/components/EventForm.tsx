@@ -14,6 +14,10 @@ export interface EventRow {
 
 const TIME_KEYS = ["registration_opens_at", "registration_deadline", "starts_at", "primary_reveal_at", "ends_at", "post_event_reveal_at"] as const;
 type TimeKey = (typeof TIME_KEYS)[number];
+const TIME_LABELS: Record<TimeKey, string> = {
+  registration_opens_at: "registration opens", registration_deadline: "registration deadline", starts_at: "event starts",
+  primary_reveal_at: "match reveal", ends_at: "event ends", post_event_reveal_at: "recommendations reveal",
+};
 
 export type EventPayload = Record<string, unknown>;
 
@@ -43,7 +47,12 @@ export function EventForm({ initial, onSubmit, submitLabel, busy }: {
       ["primary_reveal_at", "ends_at", "The match reveal must be before the event ends."],
       ["ends_at", "post_event_reveal_at", "Recommendations are revealed after the event ends."],
     ];
-    for (const [a, b, msg] of order) { const x = t(a), y = t(b); if (x !== null && y !== null && x > y) return setError(msg); }
+    const show = (k: TimeKey) => new Date(f[k]).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" });
+    for (const [a, b, msg] of order) {
+      const x = t(a), y = t(b);
+      // Show exactly what was read, so AM/PM or date mix-ups are easy to spot.
+      if (x !== null && y !== null && x > y) return setError(`${msg} Currently: ${TIME_LABELS[a]} ${show(a)}, ${TIME_LABELS[b]} ${show(b)}.`);
+    }
     if (f.name.trim().length < 3) return setError("Give the event a name (3+ characters).");
     if (f.access_code && !/^[A-Za-z0-9-]{4,32}$/.test(f.access_code)) return setError("Access codes are 4–32 letters, numbers or dashes.");
     setError(null);
