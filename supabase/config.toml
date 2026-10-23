@@ -1,0 +1,18 @@
+project_id = "meetwise"
+
+[functions.run-matching]
+verify_jwt = true
+
+[functions.generate-recommendations]
+verify_jwt = true
+
+[functions.resume-url]
+verify_jwt = true
+
+[functions.delete-account]
+verify_jwt = true
+
+# Authorised inside the function against the service-role key / CRON_SECRET,
+# so it also works with non-JWT secret keys.
+[functions.scheduler]
+verify_jwt = false

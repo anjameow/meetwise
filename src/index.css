@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-cream-100 text-navy-900 font-sans antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-cream-100; }
+  ::selection { @apply bg-gold-200 text-navy-900; }
+}
+
+@layer components {
+  .page { @apply container max-w-2xl pb-28 pt-6 md:pb-12; }
+  .page-wide { @apply container max-w-6xl pb-28 pt-6 md:pb-12; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.14em] text-gold-600; }
+  .card { @apply rounded-2xl border border-navy-100/70 bg-white shadow-card; }
+  .gold-rule { @apply h-px w-16 bg-gradient-to-r from-gold-400 to-transparent; }
+  .skeleton { @apply animate-shimmer rounded-lg bg-[length:200%_100%] bg-gradient-to-r from-cream-200 via-cream-100 to-cream-200; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
